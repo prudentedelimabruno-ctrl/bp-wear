@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BP Wear — Estilo que Marca</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b0b0c;color:#fff}.top{text-align:center;background:#fff;color:#111;padding:9px;font-size:12px;font-weight:800}.nav{position:sticky;top:0;z-index:10;background:#0b0b0cf5;border-bottom:1px solid #29292d;padding:17px 5%;display:flex;align-items:center;justify-content:space-between}.logo{font-size:28px;font-weight:900;letter-spacing:2px}.logo small{font-weight:400}.links{display:flex;gap:25px}.links a{color:#fff;text-decoration:none;font-size:14px}.cart{background:#fff;color:#111;border:0;border-radius:22px;padding:10px 15px;font-weight:800;cursor:pointer}.hero{text-align:center;padding:100px 20px;background:radial-gradient(circle,#303035,#0b0b0c 65%)}.hero h1{font-size:clamp(45px,9vw,90px);margin:10px 0;letter-spacing:-4px}.hero p{color:#bbb;font-size:18px}.btn{display:inline-block;background:#fff;color:#111;padding:15px 25px;margin-top:15px;border-radius:5px;font-weight:900;text-decoration:none}section{max-width:1150px;margin:auto;padding:60px 20px}.title{margin-bottom:25px}.title h2{font-size:32px;margin:0}.title p{color:#aaa}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:#151517;border:1px solid #29292d;border-radius:10px;overflow:hidden}.photo{height:290px;background:linear-gradient(140deg,#303034,#111113);display:flex;align-items:center;justify-content:center;font-size:55px;font-weight:900;letter-spacing:4px}.info{padding:17px}.price{font-size:19px;font-weight:800;margin:8px 0 14px}.add{width:100%;padding:12px;background:#fff;color:#111;border:0;border-radius:5px;font-weight:900;cursor:pointer}.promo{margin-top:45px;text-align:center;background:#fff;color:#111;border-radius:12px;padding:35px}.promo h2{margin:0 0 8px}.promo p{margin:0;color:#555}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:15px}.box{background:#151517;border:1px solid #444;border-radius:12px;padding:25px;max-width:500px;width:100%;max-height:90vh;overflow:auto}.box h2{margin-top:0}.item{display:flex;justify-content:space-between;border-bottom:1px solid #333;padding:12px 0}.total{font-size:21px;font-weight:900;margin:20px 0}.field{width:100%;padding:12px;margin:6px 0 10px;background:#0b0b0c;border:1px solid #444;border-radius:5px;color:#fff}.close{float:right;background:none;color:#fff;border:0;font-size:22px;cursor:pointer}.whats{width:100%;padding:14px;background:#fff;color:#111;border:0;border-radius:5px;font-weight:900;cursor:pointer;margin-top:8px}.pix{border:1px solid #555;padding:12px;border-radius:7px;margin:12px 0;color:#ddd;font-size:13px}
+footer{text-align:center;padding:35px;color:#888;border-top:1px solid #29292d}
+@media(max-width:800px){.links{display:none}.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.grid{grid-template-columns:1fr}.photo{height:300px}}
+</style></head>
+<body>
+<div class="top">FRETE GRÁTIS ACIMA DE R$ 199 • BP WEAR</div>
+<nav class="nav"><div class="logo">BP <small>WEAR</small></div><div class="links"><a href="#inicio">Início</a><a href="#produtos">Produtos</a><a href="#sobre">Sobre</a></div><button class="cart" onclick="openCart()">🛒 Carrinho (<span id="count">0</span>)</button></nav>
+<main id="inicio">
+<div class="hero"><div style="letter-spacing:5px;color:#aaa">BP WEAR</div><h1>ESTILO QUE MARCA.</h1><p>Moda masculina para quem tem presença.</p><a class="btn" href="#produtos">COMPRAR AGORA</a></div>
+<section id="produtos"><div class="title"><h2>Produtos em destaque</h2><p>Escolha sua peça e adicione ao carrinho.</p></div>
+<div class="grid">
+<div class="card"><div class="photo">BP</div><div class="info"><b>Camiseta BP Essential</b><div class="price">R$ 59,90</div><button class="add" onclick="add('Camiseta BP Essential',59.90)">ADICIONAR</button></div></div>
+<div class="card"><div class="photo">BP</div><div class="info"><b>Short BP Urban</b><div class="price">R$ 49,90</div><button class="add" onclick="add('Short BP Urban',49.90)">ADICIONAR</button></div></div>
+<div class="card"><div class="photo">BP</div><div class="info"><b>Camiseta BP Premium</b><div class="price">R$ 79,90</div><button class="add" onclick="add('Camiseta BP Premium',79.90)">ADICIONAR</button></div></div>
+<div class="card"><div class="photo">BP</div><div class="info"><b>Boné BP Original</b><div class="price">R$ 44,90</div><button class="add" onclick="add('Boné BP Original',44.90)">ADICIONAR</button></div></div>
+</div>
+<div class="promo" id="sobre"><h2>SEU ESTILO. SUA MARCA.</h2><p>BP Wear — Estilo que Marca.</p></div></section></main>
+<footer>© 2026 BP Wear • Estilo que Marca</footer>
+
+<div class="modal" id="modal"><div class="box"><button class="close" onclick="closeCart()">✕</button><h2>Seu carrinho</h2><div id="items"></div><div class="total" id="total"></div>
+<input class="field" id="nome" placeholder="Seu nome"><input class="field" id="endereco" placeholder="Endereço para entrega">
+<div class="pix"><b>Pagamento:</b> Pix<br>Após enviar o pedido pelo WhatsApp, combinaremos a chave Pix e a confirmação do pagamento.</div>
+<button class="whats" onclick="checkout()">FINALIZAR PELO WHATSAPP</button></div></div>
+<script>
+let cart=[];
+function add(name,price){cart.push({name,price});document.getElementById('count').textContent=cart.length;alert('Produto adicionado ao carrinho!');}
+function openCart(){render();document.getElementById('modal').style.display='flex'}
+function closeCart(){document.getElementById('modal').style.display='none'}
+function render(){let el=document.getElementById('items');if(!cart.length){el.innerHTML='<p style="color:#aaa">Seu carrinho está vazio.</p>';document.getElementById('total').textContent='';return}el.innerHTML=cart.map((p,i)=>`<div class="item"><span>${p.name}</span><span>R$ ${p.price.toFixed(2).replace('.',',')} <button onclick="removeItem(${i})" style="background:none;color:#fff;border:0;cursor:pointer">✕</button></span></div>`).join('');let t=cart.reduce((s,p)=>s+p.price,0);document.getElementById('total').textContent='Total: R$ '+t.toFixed(2).replace('.',',')}
+function removeItem(i){cart.splice(i,1);document.getElementById('count').textContent=cart.length;render()}
+function checkout(){if(!cart.length){alert('Adicione um produto primeiro.');return}let nome=document.getElementById('nome').value||'Não informado';let end=document.getElementById('endereco').value||'Não informado';let total=cart.reduce((s,p)=>s+p.price,0);let pedido=cart.map(p=>`• ${p.name} — R$ ${p.price.toFixed(2).replace('.',',')}`).join('%0A');let msg=`Olá! Quero fazer um pedido na BP Wear.%0A%0ANome: ${nome}%0AEndereço: ${end}%0A%0A${pedido}%0A%0ATotal: R$ ${total.toFixed(2).replace('.',',')}%0A%0AGostaria de pagar via Pix.`;let telefone='5512991504340';window.open('https://wa.me/'+telefone+'?text='+msg,'_blank')}
+</script></body></html>
